@@ -3,55 +3,116 @@ import {
     Layout,
     Card,
     FormLayout,
-    TextField
+    TextField,
+    Icon
 } from "@shopify/polaris";
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import React from "react";
+import React, { useState } from "react";
+import Avatar from '@mui/material/Avatar';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import {
+    ChannelsMajor
+  } from '@shopify/polaris-icons';
 
 function AddFacebookPage() {
+    const [appId, setAppId] = useState('')
+    const [appSecret, setAppScret] = useState('')
+    const [stepper, setStepper] = useState(1)
+    const notify = () => toast.success("Sync Facebook app success");
+
+    const handleConnect = () => {
+        setStepper(stepper+1)
+    }
+    const handleAppId = (e) => {
+        setAppId(e)
+    }
     const steps = [
         'Connect',
         'Choose Page',
         'Confirm',
     ];
+    
     return (
         <Page fullWidth>
+        <ToastContainer />
             <Layout>
                 <Layout.Section oneHalf>
                     <Card title="Add Facebook page">
                         <Card.Section title="Connect to Facebook">
                         <Box sx={{ width: '100%' }}>
-                        <Stepper activeStep={1} alternativeLabel>
+                        <Stepper activeStep={stepper} alternativeLabel>
                             {steps.map((label) => (
-                            <Step key={label}>
-                                <StepLabel>{label}</StepLabel>
-                            </Step>
+                                <Step key={label}>
+                                    <StepLabel>{label}</StepLabel>
+                                </Step>
                             ))}
                         </Stepper>
                         </Box>
                         </Card.Section>
                         <div className="ml-2 mr-2 pb-2">
-                            <Card sectioned>
-                                <FormLayout>
-                                <TextField
-                                    label="Facebook App Id"
-                                    onChange={() => {}}
-                                />
-                                <TextField
-                                    label="Facebook App Secret"
-                                    onChange={() => {}}
-                                />
-                                <p className="howto">Leave blank if don't want to use long-lived access token.</p>
-                                </FormLayout>
-                            </Card>
-                            <div className="button__connect_facebook">
-                                <button type="button" className="btn btn-primary">
-										Connect to Your Facebook Account
-                                </button>
-                            </div>
+                        {(() => {
+                        if (stepper === 1) {
+                            return (
+                            <div>
+                                <Card sectioned>
+                                    <FormLayout>
+                                    <TextField
+                                        label="Facebook App Id"
+                                        onChange={handleAppId}
+                                        value={appId}
+                                    />
+                                    <TextField
+                                        label="Facebook App Secret"
+                                        onChange={setAppScret}
+                                        value={appSecret}
+                                    />
+                                    <p className="howto">Leave blank if don't want to use long-lived access token.</p>
+                                    </FormLayout>
+                                </Card>
+                            </div>)} 
+                        else if (stepper === 2) {
+                            return (
+                                <Card sectioned>
+                                    <div className="d-flex justify-content-between">
+                                        <div className="d-flex align-items-center">
+                                            <Avatar>T</Avatar>
+                                            <p className="mb-0 ml-2">Test page</p>
+                                        </div>
+                                        <div onClick={() => {setStepper(stepper + 1); notify()}}>
+                                            <button type="button" className="btn btn-info">choose</button>
+                                        </div>
+                                    </div>
+                                </Card>
+                            )
+                        } else {
+                                return (
+                                    <div>
+                                        <Card sectioned>
+                                            <div className="d-flex flex-column justify-content-center align-items-center">
+                                                <button onClick={() => setStepper(2)} type="button" className="btn btn-primary mb-2 col-4">Add More Page</button>
+                                                <button onClick={() => setStepper(1)} type="button" className="btn btn-success col-4">Done</button>
+                                            </div>
+                                        </Card>
+                                    </div>
+                                )
+                                }
+                            })()}
+                            {
+                                stepper <= 1 ?
+                                <div className="button__connect_facebook">
+                                    <button onClick={() => handleConnect()} type="button" className="btn btn-primary d-flex">
+                                    <Icon
+                                    source={ChannelsMajor}
+                                    color="white"
+                                    /> 
+                                    <span className="ml-2">Connect to Your Facebook Account</span>
+                                    </button>
+                                </div> : ''
+                            }
                         </div>
                 </Card>
             </Layout.Section>

@@ -1,0 +1,10 @@
+.important_input {
+    color: red;
+}
+.eventItem {
+    display: flex;
+    justify-content: space-between;
+    & .eventItem__image img{
+        width: 180px;
+    }
+}

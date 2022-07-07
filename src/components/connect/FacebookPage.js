@@ -1,21 +1,19 @@
 import {Page, Layout, Card, Icon} from "@shopify/polaris";
 import React from "react";
-import {
-  PageMajor,
-  DeleteMinor
-} from '@shopify/polaris-icons';
-import { ToastContainer, toast } from 'react-toastify';
+import {DuplicateMinor, DeleteMinor} from '@shopify/polaris-icons';
+import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ModalCommon from "../modal/ModalCommon";
 
 function FacebookPage() {
     const notify = () => toast("Copied");
     const handleCopyText = (e) => {
-      navigator.clipboard.writeText(`<div class="ot-facebook-events" data-page-id=${e}></div>`)
-      notify();
+        navigator.clipboard.writeText(`<div class="ot-facebook-events" data-page-id=${e}></div>`)
+        notify();
     }
     return (
         <Page fullWidth>
-          <ToastContainer />
+            <ToastContainer/>
             <Layout>
                 <Layout.Section oneHalf>
                     <Card title="Facebook Pages">
@@ -33,39 +31,29 @@ function FacebookPage() {
                                     <tr>
                                         <td>189861595184608</td>
                                         <td>Test 0</td>
-                                        <td title="Copy short code" role="button" onClick={() => handleCopyText(189861595184608)}><Icon
-                                          source={PageMajor}
-                                          color="base"
-                                        /></td>
-                                        <td role="button" ><Icon
-                                          source={DeleteMinor}
-                                          color="base"
-                                        /></td>
+                                        <td title="Copy short code" role="button"
+                                            onClick={
+                                                () => handleCopyText(189861595184608)
+                                        }><Icon source={DuplicateMinor}
+                                                color="white"/></td>
+                                        <td><ModalCommon phaseAction={'deleteFacebookPage'}/></td>
                                     </tr>
                                     <tr>
                                         <td>189861595184608</td>
                                         <td>Test 1</td>
-                                        <td >
-                                        <Icon
-                                          source={PageMajor}
-                                          color="base"
-                                        /></td>
-                                        <td><Icon
-                                          source={DeleteMinor}
-                                          color="base"
-                                        /></td>
+                                        <td>
+                                            <Icon source={DuplicateMinor}
+                                                color="white"/></td>
+                                        <td><Icon source={DeleteMinor}
+                                                color="base"/></td>
                                     </tr>
                                     <tr>
                                         <td>189861595184608</td>
                                         <td>Test 2</td>
-                                        <td><Icon
-                                          source={PageMajor}
-                                          color="base"
-                                        /></td>
-                                        <td><Icon
-                                          source={DeleteMinor}
-                                          color="base"
-                                        /></td>
+                                        <td><Icon source={DuplicateMinor}
+                                                color="white"/></td>
+                                        <td><Icon source={DeleteMinor}
+                                                color="base"/></td>
                                     </tr>
                                 </tbody>
                             </table>
