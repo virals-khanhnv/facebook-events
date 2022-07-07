@@ -12,67 +12,73 @@ import {
     DropdownItem,
     DropdownMenu,
 } from "reactstrap";
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
 
 function NavigationApp() {
     const docs = 'https://help.omegatheme.com/en/category/facebook-events-by-omega-yqc7xu/'
     const [isOpen, setIsOpen] = React.useState(false);
+    const pathname = useLocation().pathname;
+    const list_pathName = [
+        '/facebook-events/build/general-settings',
+        '/facebook-events/build/label-custom',
+        '/facebook-events/build/calender-snippet',
+        '/facebook-events/build/advanced-settings',
+    ]
     return(
         <div>
             <Navbar color="light" expand="md" light>
-                <NavbarBrand href="/">
+                <NavbarBrand href="/facebook-events/build/">
                     Facebook Events
                 </NavbarBrand>
                 <NavbarToggler onClick={() => { setIsOpen(!isOpen) }} />
                 <Collapse navbar isOpen={isOpen}>
                     <Nav className="me-auto" navbar>
                         <NavItem>
-                            <NavLink tag={Link} to="/">
-                                Connect
+                            <NavLink className={`${pathname === '/facebook-events/build/' ? 'activeLink' : 'inActiveLink'}`} tag={Link} to="/facebook-events/build/">
+                                Connect-Facebook
                             </NavLink>
                         </NavItem>
                         <UncontrolledDropdown inNavbar nav>
-                            <DropdownToggle caret nav>
+                            <DropdownToggle className={`${ list_pathName.includes(pathname) ? 'activeLink' : 'inActiveLink' }`} caret nav>
                                 Settings
                             </DropdownToggle>
                             <DropdownMenu end>
                                 <DropdownItem>
-                                    <NavLink tag={Link} to="/general-settings">
+                                    <NavLink className={`${pathname === '/facebook-events/build/general-settings' ? 'activeLink' : 'inActiveLink'}`} tag={Link} to="/facebook-events/build/general-settings">
                                         General settings
                                     </NavLink>
                                 </DropdownItem>
                                 <DropdownItem>
-                                    <NavLink tag={Link} to="/label-custom">
+                                    <NavLink className={`${pathname === '/facebook-events/build/label-custom' ? 'activeLink' : 'inActiveLink'}`} tag={Link} to="/facebook-events/build/label-custom">
                                         Label custom
                                     </NavLink>
                                 </DropdownItem>
                                 <DropdownItem>
-                                    <NavLink tag={Link} to="/calender-snippet">
+                                    <NavLink className={`${pathname === '/facebook-events/build/calender-snippet' ? 'activeLink' : 'inActiveLink'}`} tag={Link} to="/facebook-events/build/calender-snippet">
                                         Calender snippet
                                     </NavLink>
                                 </DropdownItem>
                                 <DropdownItem>
-                                    <NavLink tag={Link} to="/advanced-settings">
+                                    <NavLink className={`${pathname === '/facebook-events/build/advanced-settings' ? 'activeLink' : 'inActiveLink'}`} tag={Link} to="/facebook-events/build/advanced-settings">
                                         Advanced settings
                                     </NavLink>
                                 </DropdownItem>
                                 <DropdownItem>
-                                    <NavLink tag={Link} to="/preview">
+                                    <NavLink tag={Link} to="/facebook-events/build/preview">
                                         Preview
                                     </NavLink>
                                 </DropdownItem>
                             </DropdownMenu>
                         </UncontrolledDropdown>
                         <NavItem>
-                            <NavLink tag={Link} to="/events">
+                            <NavLink className={`${pathname === '/facebook-events/build/events' ? 'activeLink' : 'inActiveLink'}`} tag={Link} to="/facebook-events/build/events">
                                 Events
                             </NavLink>
                         </NavItem>
                         <NavItem>
-                            <NavLink>
+                            <NavLink className="link_bank_docs">
                                 <a target="__blank" href={docs}>Our Document</a>
                             </NavLink>
-                            
                         </NavItem>
                     </Nav>
                 </Collapse>

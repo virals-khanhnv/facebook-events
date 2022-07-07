@@ -14,6 +14,7 @@ function MainEvents() {
                 <Layout.Section>
                     <Card sectioned>
                         <div className="form-group pl-0 d-flex justify-content-center align-items-center">
+                            <p className='mr-2 mb-0'>EVENTS :</p>
                             <select className="custom-select mr-sm-2 col-4">
                                 <option selected>Test</option>
                             </select>

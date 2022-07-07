@@ -1,19 +1,26 @@
-import {Page, Layout, Card, Icon} from "@shopify/polaris";
-import React from "react";
+import {Page, Layout, Card, Icon, Toast, Frame} from "@shopify/polaris";
+import React, { useState, useCallback } from "react";
 import {DuplicateMinor, DeleteMinor} from '@shopify/polaris-icons';
-import {ToastContainer, toast} from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import ModalCommon from "../modal/ModalCommon";
 
 function FacebookPage() {
-    const notify = () => toast("Copied");
+    const [active, setActive] = useState(false);
+
+  const toggleActive = useCallback(() => setActive((active) => !active), []);
+
+  const toastMarkup = active ? (
+    <Toast content="COPPIED" onDismiss={toggleActive} />
+  ) : null;
+
+    // const notify = () => toast("Copied");
     const handleCopyText = (e) => {
         navigator.clipboard.writeText(`<div class="ot-facebook-events" data-page-id=${e}></div>`)
-        notify();
+        toggleActive();
     }
     return (
-        <Page fullWidth>
-            <ToastContainer/>
+        <Frame>
+                    <Page fullWidth>
+           {toastMarkup}
             <Layout>
                 <Layout.Section oneHalf>
                     <Card title="Facebook Pages">
@@ -63,6 +70,8 @@ function FacebookPage() {
                 </Layout.Section>
             </Layout>
         </Page>
+        </Frame>
+
     );
 }
 

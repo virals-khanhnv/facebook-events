@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/facebook-events/build/static/css/main.2125b3b6.css",
-    "main.js": "/facebook-events/build/static/js/main.5605bdc6.js",
+    "main.css": "/facebook-events/build/static/css/main.e509089a.css",
+    "main.js": "/facebook-events/build/static/js/main.fc1f64c9.js",
     "static/js/787.996b64bd.chunk.js": "/facebook-events/build/static/js/787.996b64bd.chunk.js",
     "static/media/istockphoto-1181250359-612x612.jpg": "/facebook-events/build/static/media/istockphoto-1181250359-612x612.4c703e982a9b1c94d382.jpg",
     "index.html": "/facebook-events/build/index.html",
-    "main.2125b3b6.css.map": "/facebook-events/build/static/css/main.2125b3b6.css.map",
-    "main.5605bdc6.js.map": "/facebook-events/build/static/js/main.5605bdc6.js.map",
+    "main.e509089a.css.map": "/facebook-events/build/static/css/main.e509089a.css.map",
+    "main.fc1f64c9.js.map": "/facebook-events/build/static/js/main.fc1f64c9.js.map",
     "787.996b64bd.chunk.js.map": "/facebook-events/build/static/js/787.996b64bd.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.2125b3b6.css",
-    "static/js/main.5605bdc6.js"
+    "static/css/main.e509089a.css",
+    "static/js/main.fc1f64c9.js"
   ]
 }

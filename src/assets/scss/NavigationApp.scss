@@ -1,0 +1,14 @@
+.activeLink {
+    color: rgb(0, 0, 0) !important;
+    font-style: bold !important;
+}
+.inActiveLink {
+    color: unset;
+    font-style: unset;
+}
+.link_bank_docs {
+    & a {
+        color: unset !important;
+        text-decoration: none;
+    }
+}

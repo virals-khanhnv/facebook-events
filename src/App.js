@@ -10,27 +10,33 @@ import CalendarSnippet from './components/settings/CalendarSnippet';
 import AdvancedSettings from './components/settings/AdvancedSettings';
 import MainPreview from './components/settings/MainPreview';
 import MainEvents from './components/events/MainEvents';
+import CatchChangeToSave from './components/catchChangeToSave/CatchChangeToSave';
+import { useSelector } from 'react-redux';
 
 function App() {
+    const {statusNavbar} = useSelector((state) => ({...state.data}));
     return (
         <div className='app'>
+            {
+                statusNavbar ? <CatchChangeToSave /> : ''
+            }
             <Router>
-                <div className='col-12 mt-3'>
+                <div className='col-12'>
                     <NavigationApp/>
                     <Routes>
-                        <Route path='/'
+                        <Route path='/facebook-events/build/'
                             element={<MainConnect/>}></Route>
-                        <Route path='/general-settings'
+                        <Route path='/facebook-events/build/general-settings'
                             element={<GeneralSettings/>}></Route>
-                        <Route path='/label-custom'
+                        <Route path='/facebook-events/build/label-custom'
                             element={<LabelCustom/>}></Route>
-                        <Route path='/calender-snippet'
+                        <Route path='/facebook-events/build/calender-snippet'
                             element={<CalendarSnippet/>}></Route>
-                        <Route path='/advanced-settings'
+                        <Route path='/facebook-events/build/advanced-settings'
                             element={<AdvancedSettings/>}></Route>
-                        <Route path='/preview'
+                        <Route path='/facebook-events/build/preview'
                             element={<MainPreview/>}></Route>
-                        <Route path='/events'
+                        <Route path='/facebook-events/build/events'
                         element={<MainEvents/>}></Route>
                     </Routes>
                 </div>
