@@ -3,13 +3,19 @@ import {Button, Modal, TextContainer} from "@shopify/polaris";
 import {useState, useCallback} from "react";
 import {CalendarMajor, FinancesMinor, DeleteMinor} from '@shopify/polaris-icons';
 import {Icon} from "@shopify/polaris";
+import { useDispatch } from 'react-redux';
+import { deleteFacebookPage } from '../../redux/Action';
 
-function ModalCommon({nameOfEvent, location, eventDate, phaseAction}) {
+function ModalCommon({nameOfEvent, location, eventDate, phaseAction, id}) {
     const [active, setActive] = useState(false);
+   const dispatch = useDispatch();
 
     const handleChange = useCallback(() => setActive(!active), [active]);
     var listTextPhaseActionModal = ['Are you sure you want to delete this Facebook page? You can get this again when connect to your Facebook.', 'Are you sure you want to delete this event? You can get this again when syncing events from Facebook.']
-
+    const handleDelete = () => {
+        handleChange()
+        dispatch(deleteFacebookPage(id))
+    }
 
     const activator = phaseAction === 'preview' ? <Button onClick={handleChange}>Open</Button> : <div role={'button'}
         onClick={handleChange}><Icon source={DeleteMinor}
@@ -43,7 +49,7 @@ function ModalCommon({nameOfEvent, location, eventDate, phaseAction}) {
                             onAction: handleChange
                         },] : [{
                             content: "Agree",
-                            onAction: handleChange
+                            onAction: handleDelete
                         },]
             }>
 

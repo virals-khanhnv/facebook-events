@@ -5,7 +5,7 @@ import FacebookPage from './FacebookPage'
 function MainConnect() {
     return (
         <div>
-            <AddFacebookPage/>
+            <AddFacebookPage />
             <FacebookPage />
         </div>
     )

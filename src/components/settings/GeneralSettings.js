@@ -10,6 +10,16 @@ function GeneralSettings() {
     const [valueColorBackground, setValueColorBackground] = useState('#fdffff');
     const dispatch = useDispatch();
 
+    //set initial state for all fields 
+    const [validationMsg, setValidationMsg] = useState({});
+    const [state, setState] = React.useState({
+      pageName: "",
+      eventLimitPerPage: "",
+      seeAllEvent: "",
+      coverImageHeight: "",
+      readmoreTextCustom: ""
+    })
+
     // Func handle
     const handleChangeColorText = (e) => {
       setValueColorText(e.target.value);
@@ -21,9 +31,56 @@ function GeneralSettings() {
 
     const handleChangeOpenSave = (evt) => {
       const value = evt.target.value;
-      console.log(value);
+      setState({
+        ...state,
+        [evt.target.name]: value
+      });
       if (value) 
         dispatch(openNavbarSaveChange(true))
+    }
+
+    // validate 
+    const validateAll = () => {
+      const msg = {}
+      if(state.pageName.length <= 0) {
+          msg.pageName = 'Please enter the page name'
+      } else if (state.pageName.length >= 255) {
+        msg.pageName = "Can't enter more than 255 characters"
+      }
+
+      if(state.eventLimitPerPage <= 0) {
+          msg.eventLimitPerPage = 'Please enter the event limit per page'
+      }
+
+      if(state.seeAllEvent <= 0) {
+        msg.seeAllEvent = 'Please enter the see All Events'
+      } else if (state.seeAllEvent.length >= 255) {
+        msg.seeAllEvent = "Can't enter more than 255 characters"
+      }
+
+      if(state.coverImageHeight <= 0) {
+        msg.coverImageHeight = 'Please enter the cover image height (px)'
+      }
+
+      if(state.readmoreTextCustom <= 0) {
+        msg.readmoreTextCustom = 'Please enter the readmore text custom'
+      } else if (state.readmoreTextCustom.length >= 255) {
+        msg.readmoreTextCustom = "Can't enter more than 255 characters"
+      }
+ 
+      setValidationMsg(msg) 
+      if(Object.keys(msg).length > 0){
+          return false
+      }else{
+          return true
+      }
+    }
+
+    // submit when all okay
+    const onSubmitLogin =  async (e) => {
+      e.preventDefault();
+      const isValidate = validateAll()
+      if(!isValidate) return
     }
 
     return (
@@ -42,7 +99,8 @@ function GeneralSettings() {
                     </div>
                     <div className="form-group">
                       <label htmlFor="pageName">Page Name</label>
-                      <input onChange={handleChangeOpenSave} type="text" className="form-control" id="pageName" placeholder="Facebook Events 1" />
+                      <input onChange={handleChangeOpenSave} type="text" className="form-control" name='pageName' id="pageName" defaultValue={state.pageName} placeholder="Facebook Events 1" />
+                      <p className="text-danger">{validationMsg.pageName}</p> 
                     </div>
                     <div className="form-group">
                       <div className="form-check">
@@ -60,7 +118,8 @@ function GeneralSettings() {
                     </div>
                     <div className="form-group">
                       <label htmlFor="event-limit">Event limit per page</label>
-                      <input onChange={handleChangeOpenSave} type="number" className="form-control" id="event-limit" />
+                      <input onChange={handleChangeOpenSave} type="number" name='eventLimitPerPage' className="form-control" id="event-limit" />
+                       <p className="text-danger">{validationMsg.eventLimitPerPage}</p> 
                     </div>
                     <div className="form-group">
                       <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">Ordering Events <span className='important_input'>*</span></label>
@@ -105,15 +164,18 @@ function GeneralSettings() {
                     </div>
                     <div className="form-group">
                       <label htmlFor="seeAllEvents">See All Events</label>
-                      <input onChange={handleChangeOpenSave} type="text" className="form-control" id="seeAllEvents" />
+                      <input onChange={handleChangeOpenSave} type="text" name='seeAllEvent' className="form-control" id="seeAllEvents" />
+                      <p className="text-danger">{validationMsg.seeAllEvent}</p> 
                     </div>
                     <div className="form-group">
                       <label htmlFor="event-limit">Cover image height (px)</label>
-                      <input onChange={handleChangeOpenSave} type="number" className="form-control" id="event-limit" />
+                      <input onChange={handleChangeOpenSave} type="number" name="coverImageHeight" className="form-control" id="event-limit" />
+                      <p className="text-danger">{validationMsg.coverImageHeight}</p> 
                     </div>
                     <div className="form-group">
                       <label htmlFor="seeAllEvents">Readmore text custom</label>
-                      <input onChange={handleChangeOpenSave} type="text" className="form-control" id="seeAllEvents" placeholder="readmore" />
+                      <input onChange={handleChangeOpenSave} type="text" name="readmoreTextCustom" className="form-control" id="seeAllEvents" placeholder="readmore" />
+                      <p className="text-danger">{validationMsg.readmoreTextCustom}</p> 
                     </div>
                     <div className="form-group">
                       <div className="colorpicker">
@@ -125,7 +187,7 @@ function GeneralSettings() {
                         <input onChange={handleChangeOpenSave} type="color" id="section1ParagraphColor" onInput={(e) => handleChangeColorText(e)} name="head" value={valueColorText}  />
                       </div>
                     </div>
-                    <button type="button" className="btn btn-primary">Save Setting</button>
+                    <button type="button" onClick={onSubmitLogin} className="btn btn-primary">Save Setting</button>
                     </Card>
                 </Layout.Section>
             </Layout>

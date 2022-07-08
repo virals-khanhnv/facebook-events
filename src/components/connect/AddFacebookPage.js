@@ -12,16 +12,21 @@ import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback} from "react";
 import Avatar from '@mui/material/Avatar';
 import {
     ChannelsMajor
 } from '@shopify/polaris-icons';
+import { useDispatch } from "react-redux";
+import { fetchListFacebookPage } from "../../redux/Action";
 
 function AddFacebookPage() {
     const [appId, setAppId] = useState('')
     const [appSecret, setAppScret] = useState('')
     const [stepper, setStepper] = useState(1)
+    const [listFacebookPage, setListFacebookPage] = useState([]);
+
+    const dispatch = useDispatch();
 
     const [active, setActive] = useState(false);
 
@@ -42,7 +47,39 @@ function AddFacebookPage() {
         'Choose Page',
         'Confirm',
     ];
-    
+
+    var fakeDataPage = [
+        {
+            id: 1,
+            avatar: "T",
+            pageName: "test_1",
+            facebookPageId:  189861595184608,
+        },
+        {
+            id: 2,
+            avatar: "T1",
+            pageName: "test_2",
+            facebookPageId:  189861595123123,
+        },
+        {
+            id: 3,
+            avatar: "T2",
+            pageName: "test_3",
+            facebookPageId:  189833333184608,
+        },
+        {
+            id: 4, 
+            avatar: "T3",
+            pageName: "test_4",
+            facebookPageId:  189833333184601,
+        },
+    ]
+
+    const handleAddFacebookPage = (e) => {
+        setListFacebookPage([...listFacebookPage, e]);
+        dispatch(fetchListFacebookPage([...listFacebookPage, e]))
+    }
+     
     return (
         <Frame>
             <Page fullWidth>
@@ -85,50 +122,21 @@ function AddFacebookPage() {
                                     else if (stepper === 2) {
                                         return (
                                             <div>
-                                                <Card sectioned>
-                                                    <div className="d-flex justify-content-between">
-                                                        <div className="d-flex align-items-center">
-                                                            <Avatar>T</Avatar>
-                                                            <p className="mb-0 ml-2">Test page 1</p>
+                                            {
+                                                fakeDataPage.map(item => (
+                                                    <Card sectioned>
+                                                        <div className="d-flex justify-content-between">
+                                                            <div className="d-flex align-items-center">
+                                                                <Avatar>{item.avatar}</Avatar>
+                                                                <p className="mb-0 ml-2">{item.pageName}</p>
+                                                            </div>
+                                                            <div onClick={() => {setStepper(stepper + 1); toggleActive() ; handleAddFacebookPage(item)}}>
+                                                                <button type="button" className="btn btn-info">choose</button>
+                                                            </div>
                                                         </div>
-                                                        <div onClick={() => {setStepper(stepper + 1); toggleActive()}}>
-                                                            <button type="button" className="btn btn-info">choose</button>
-                                                        </div>
-                                                    </div>
-                                                </Card>
-                                                <Card sectioned>
-                                                    <div className="d-flex justify-content-between">
-                                                        <div className="d-flex align-items-center">
-                                                            <Avatar>T</Avatar>
-                                                            <p className="mb-0 ml-2">Test page 2</p>
-                                                        </div>
-                                                        <div onClick={() => {setStepper(stepper + 1); toggleActive()}}>
-                                                            <button type="button" className="btn btn-info">choose</button>
-                                                        </div>
-                                                    </div>
-                                                </Card>
-                                                <Card sectioned>
-                                                    <div className="d-flex justify-content-between">
-                                                        <div className="d-flex align-items-center">
-                                                            <Avatar>T</Avatar>
-                                                            <p className="mb-0 ml-2">Test page 3</p>
-                                                        </div>
-                                                        <div onClick={() => {setStepper(stepper + 1); toggleActive()}}>
-                                                            <button type="button" className="btn btn-info">choose</button>
-                                                        </div>
-                                                    </div>
-                                                </Card>
-                                                <Card sectioned>
-                                                    <div className="d-flex justify-content-between">
-                                                        <div className="d-flex align-items-center">
-                                                            <Avatar>T</Avatar>
-                                                            <p className="mb-0 ml-2">Test page 4</p>
-                                                        </div>
-                                                        <div onClick={() => {setStepper(stepper + 1); toggleActive()}}>
-                                                            <button type="button" className="btn btn-info">choose</button>
-                                                        </div>
-                                                    </div>
-                                                </Card>
+                                                    </Card>
+                                                ))
+                                            }
                                             </div>
                                         )
                                     } else {

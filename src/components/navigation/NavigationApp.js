@@ -63,11 +63,6 @@ function NavigationApp() {
                                         Advanced settings
                                     </NavLink>
                                 </DropdownItem>
-                                {/* <DropdownItem>
-                                    <NavLink tag={Link} to="/facebook-events/build/preview">
-                                        Preview
-                                    </NavLink>
-                                </DropdownItem> */}
                             </DropdownMenu>
                         </UncontrolledDropdown>
                         <NavItem>

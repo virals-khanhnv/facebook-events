@@ -12,6 +12,7 @@ function LabelCustom() {
       if (value) 
         dispatch(openNavbarSaveChange(true))
     }
+    
     return (
         <Page fullWidth>
         <div className='main_generalSetting'>
