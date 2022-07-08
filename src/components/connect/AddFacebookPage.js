@@ -14,10 +14,9 @@ import Step from '@mui/material/Step';
 import StepLabel from '@mui/material/StepLabel';
 import React, { useState, useCallback } from "react";
 import Avatar from '@mui/material/Avatar';
-
 import {
     ChannelsMajor
-  } from '@shopify/polaris-icons';
+} from '@shopify/polaris-icons';
 
 function AddFacebookPage() {
     const [appId, setAppId] = useState('')

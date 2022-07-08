@@ -3,10 +3,11 @@ import {} from "@shopify/polaris";
 import { useState, useCallback } from "react";
 
 function CalendarPreview() {
-  const [{ month, year }, setDate] = useState({ month: 8, year: 2022 });
+  const dateCurrent = new Date();
+  const [{ month, year }, setDate] = useState({ month: dateCurrent.getUTCMonth(), year: dateCurrent.getUTCFullYear() });
   const [selectedDates, setSelectedDates] = useState({
-    start: new Date("Wed Feb 07 2018 00:00:00 GMT-0500 (EST)"),
-    end: new Date("Wed Feb 07 2018 00:00:00 GMT-0500 (EST)"),
+    start: new Date(dateCurrent.toUTCString()),
+    end: new Date(dateCurrent.toUTCString()),
   });
 
   const handleMonthChange = useCallback(

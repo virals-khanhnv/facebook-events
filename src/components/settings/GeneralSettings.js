@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {Page, Layout, Card} from "@shopify/polaris";
 import { useDispatch } from 'react-redux';
 import { openNavbarSaveChange } from '../../redux/Action';
+import MainPreview from './MainPreview'
 
 function GeneralSettings() {
     // Create initial state
@@ -27,6 +28,8 @@ function GeneralSettings() {
 
     return (
         <Page fullWidth>
+        <div className='main_generalSetting'>
+          <div className='col-sm mb-2'>
             <Layout>
                 <Layout.Section>
                     <Card title="General Settings" sectioned>
@@ -126,6 +129,11 @@ function GeneralSettings() {
                     </Card>
                 </Layout.Section>
             </Layout>
+          </div>
+          <div className='col-sm'>
+            <MainPreview />
+          </div>
+        </div>
         </Page>
     )
 }

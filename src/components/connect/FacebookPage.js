@@ -2,6 +2,7 @@ import {Page, Layout, Card, Icon, Toast, Frame} from "@shopify/polaris";
 import React, { useState, useCallback } from "react";
 import {DuplicateMinor, DeleteMinor} from '@shopify/polaris-icons';
 import ModalCommon from "../modal/ModalCommon";
+import '../../assets/scss/StylesTable.scss'
 
 function FacebookPage() {
     const [active, setActive] = useState(false);

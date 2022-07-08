@@ -4,7 +4,7 @@ import CalendarPreview from './CalendarPreview'
 
 function MainPreview() {
   return (
-    <div>
+    <div className='main_preview'>
         <CalendarPreview />
         <LayoutPreview />
     </div>
