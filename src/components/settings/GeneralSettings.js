@@ -12,12 +12,13 @@ function GeneralSettings() {
 
     //set initial state for all fields 
     const [validationMsg, setValidationMsg] = useState({});
-    const [state, setState] = React.useState({
+    const [state, setState] = useState({
       pageName: "",
       eventLimitPerPage: "",
       seeAllEvent: "",
       coverImageHeight: "",
-      readmoreTextCustom: ""
+      readmoreTextCustom: "",
+      viewMode: "",
     })
 
     // Func handle
@@ -92,9 +93,15 @@ function GeneralSettings() {
                     <Card title="General Settings" sectioned>
                     <div className="form-group">
                       <label className="my-1 mr-2" >View Mode <span className='important_input'>*</span></label>
-                      <select onChange={handleChangeOpenSave} className="custom-select my-1 mr-sm-2" >
-                        <option>List View</option>
-                        <option>Grid View</option>
+                      <select name="viewMode" onChange={handleChangeOpenSave} className="custom-select my-1 mr-sm-2" >
+                        <option value="0">Widget View</option>
+                        <option value="1">List View</option>
+                        <option value="2">Grid View</option>
+                        <option value="3">Iframe View</option>
+                        <option value="4">Mansory View</option>
+                        <option value="5">Slider View</option>
+                        <option value="6">Upcomming Events View</option>
+                        <option value="7">Facebook Events View</option>
                       </select>
                     </div>
                     <div className="form-group">
@@ -193,7 +200,7 @@ function GeneralSettings() {
             </Layout>
           </div>
           <div className='col-sm'>
-            <MainPreview />
+            <MainPreview stateOfSetting={state}/>
           </div>
         </div>
         </Page>

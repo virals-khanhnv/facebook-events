@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
     Navbar,
     NavbarBrand,
@@ -16,7 +16,7 @@ import {Link, useLocation} from 'react-router-dom';
 
 function NavigationApp() {
     const docs = 'https://help.omegatheme.com/en/category/facebook-events-by-omega-yqc7xu/'
-    const [isOpen, setIsOpen] = React.useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const pathname = useLocation().pathname;
     const list_pathName = [
         '/facebook-events/build/general-settings',

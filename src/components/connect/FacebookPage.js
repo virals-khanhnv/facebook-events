@@ -10,15 +10,15 @@ import React, {useState, useCallback} from "react";
 import {DuplicateMinor} from '@shopify/polaris-icons';
 import ModalCommon from "../modal/ModalCommon";
 import '../../assets/scss/StylesTable.scss'
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import {getUnique} from "../../helper/Helper";
 
 function FacebookPage() {
     const [active, setActive] = useState(false);
-
     const {listFacebookpage} = useSelector((state) => ({
         ...state.data
     }));
+    
     const toggleActive = useCallback(() => setActive((active) => !active), []);
 
     const toastMarkup = active ? (
@@ -54,14 +54,14 @@ function FacebookPage() {
                                                 item.id
                                             }>
                                                 <td>{
-                                                    item.facebookPageId
+                                                    item.id
                                                 }</td>
                                                 <td>{
-                                                    item.pageName
+                                                    item.name
                                                 }</td>
                                                 <td title="Copy short code" role="button"
                                                     onClick={
-                                                        () => handleCopyText(189861595184608)
+                                                        () => handleCopyText(item.id)
                                                 }><Icon source={DuplicateMinor}
                                                         color="white"/></td>
                                                 <td><ModalCommon id={

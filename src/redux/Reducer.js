@@ -2,7 +2,8 @@ import * as types from './ActionTypes';
 
 const initialState = {
     statusNavbar: false,
-    listFacebookpage: []
+    listFacebookpage: [],
+    facebookPageEvents: [],
 };
 
 const facebookReducer = (state = initialState, action) => {
@@ -16,6 +17,11 @@ const facebookReducer = (state = initialState, action) => {
             return {
                 ...state,
                 listFacebookpage: action.payload
+            }
+        case types.FETCH_LIST_FACEBOOK_PAGE_EVENTS:
+            return {
+                ...state,
+                facebookPageEvents: action.payload
             }
         case types.DELETE_FACEBOOK_PAGE:
             return {

@@ -19,12 +19,14 @@ import {
 } from '@shopify/polaris-icons';
 import { useDispatch } from "react-redux";
 import { fetchListFacebookPage } from "../../redux/Action";
+import FacebookLogin from 'react-facebook-login';
+import axios from "axios";
 
 function AddFacebookPage() {
     const [appId, setAppId] = useState('')
-    const [appSecret, setAppScret] = useState('')
     const [stepper, setStepper] = useState(1)
     const [listFacebookPage, setListFacebookPage] = useState([]);
+    const [listOfPage, setListOfPage] = useState([]); 
 
     const dispatch = useDispatch();
 
@@ -36,9 +38,6 @@ function AddFacebookPage() {
       <Toast content="Sync Facebook app success" onDismiss={toggleActive} />
     ) : null;
 
-    const handleConnect = () => {
-        setStepper(stepper+1)
-    }
     const handleAppId = (e) => {
         setAppId(e)
     }
@@ -48,36 +47,28 @@ function AddFacebookPage() {
         'Confirm',
     ];
 
-    var fakeDataPage = [
-        {
-            id: 1,
-            avatar: "T",
-            pageName: "test_1",
-            facebookPageId:  189861595184608,
-        },
-        {
-            id: 2,
-            avatar: "T1",
-            pageName: "test_2",
-            facebookPageId:  189861595123123,
-        },
-        {
-            id: 3,
-            avatar: "T2",
-            pageName: "test_3",
-            facebookPageId:  189833333184608,
-        },
-        {
-            id: 4, 
-            avatar: "T3",
-            pageName: "test_4",
-            facebookPageId:  189833333184601,
-        },
-    ]
-
     const handleAddFacebookPage = (e) => {
         setListFacebookPage([...listFacebookPage, e]);
         dispatch(fetchListFacebookPage([...listFacebookPage, e]))
+    }
+
+    const responseFacebook = (response) => {
+        if (response) {
+            const userId = response.userID
+            axios.get(`https://graph.facebook.com/v14.0/${userId}/accounts`, {
+                params: {
+                    access_token: response.accessToken
+                }
+            }).then((response) => {
+                setListOfPage(response.data.data);
+                setStepper(stepper+1)
+                }).catch((error) => {
+                    setStepper(1)
+            })
+        } 
+    }
+    const handleFaceBook = () => {
+        responseFacebook();
     }
      
     return (
@@ -110,12 +101,6 @@ function AddFacebookPage() {
                                                     onChange={handleAppId}
                                                     value={appId}
                                                 />
-                                                <TextField
-                                                    label="Facebook App Secret"
-                                                    onChange={setAppScret}
-                                                    value={appSecret}
-                                                />
-                                                <p className="howto">Leave blank if don't want to use long-lived access token.</p>
                                                 </FormLayout>
                                             </Card>
                                         </div>)} 
@@ -123,12 +108,12 @@ function AddFacebookPage() {
                                         return (
                                             <div>
                                             {
-                                                fakeDataPage.map(item => (
-                                                    <Card sectioned>
+                                                listOfPage?.map(item => (
+                                                    <Card key={item.id} sectioned>
                                                         <div className="d-flex justify-content-between">
                                                             <div className="d-flex align-items-center">
                                                                 <Avatar>{item.avatar}</Avatar>
-                                                                <p className="mb-0 ml-2">{item.pageName}</p>
+                                                                <p className="mb-0 ml-2">{item.name}</p>
                                                             </div>
                                                             <div onClick={() => {setStepper(stepper + 1); toggleActive() ; handleAddFacebookPage(item)}}>
                                                                 <button type="button" className="btn btn-info">choose</button>
@@ -155,12 +140,20 @@ function AddFacebookPage() {
                                         {
                                             stepper <= 1 ?
                                             <div className="button__connect_facebook">
-                                                <button onClick={() => handleConnect()} type="button" className="btn btn-primary d-flex">
+                                                <button disabled={appId ? false : true} type="button" className="btn btn-primary d-flex">
                                                 <Icon
                                                 source={ChannelsMajor}
                                                 color="white"
                                                 /> 
-                                                <span className="ml-2">Connect to Your Facebook Account</span>
+                                                <span className="ml-2"> {
+                                                    appId ? <FacebookLogin 
+                                                    appId={appId}
+                                                    autoLoad={false}
+                                                    fields="name,email,picture"
+                                                    callback={responseFacebook}
+                                                    onClick={handleFaceBook}
+                                                    cssClass="my-facebook-button-class"/> : 'Login With Facebook'
+                                                }</span>
                                                 </button>
                                             </div> : ''
                                         }

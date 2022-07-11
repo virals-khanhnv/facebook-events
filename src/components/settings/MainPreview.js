@@ -6,7 +6,7 @@ function MainPreview() {
   return (
     <div className='main_preview'>
         <CalendarPreview />
-        <LayoutPreview />
+        <LayoutPreview/>
     </div>
   )
 }

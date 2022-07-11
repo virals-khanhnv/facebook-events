@@ -25,3 +25,11 @@
         flex-direction: column;
     }
 }
+.event_filter_sidebar {
+    & ul {
+        display: flex;
+        & li {
+            list-style: none;
+        }
+    }
+}
