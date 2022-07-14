@@ -21,7 +21,7 @@ function App() {
                 statusNavbar ? <CatchChangeToSave /> : ''
             }
             <Router>
-                <div className='col-12'>
+                <div className='col-12 pl-0 pr-0'>
                     <NavigationApp/>
                     <Routes>
                         <Route path='/facebook-events/build/'

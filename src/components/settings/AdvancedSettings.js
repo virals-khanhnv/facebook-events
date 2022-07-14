@@ -25,9 +25,6 @@ function AdvancedSettings() {
                         </Layout.Section>
                     </Layout>
                 </div>
-                <div className='col-sm'>
-                    <MainPreview/>
-                </div>
             </div>
         </Page>
     )

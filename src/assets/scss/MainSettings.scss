@@ -18,11 +18,19 @@
         padding-left: 0px;
         padding-right: 0px;
     }
+    @media screen and (max-width: 600px) {
+        .eventItem {
+            flex-wrap: wrap;
+        }
+    }
 }
 .main_generalSetting {
     display: flex;
     @media only screen and (max-width: 900px) {
         flex-direction: column;
+    }
+    & .eventItem__image {
+        margin-bottom: 10px;
     }
 }
 .event_filter_sidebar {

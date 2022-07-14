@@ -3,6 +3,7 @@ import {Page, Layout, Card} from "@shopify/polaris";
 import { useDispatch } from 'react-redux';
 import { openNavbarSaveChange } from '../../redux/Action';
 import MainPreview from './MainPreview'
+import LayoutPreview from './LayoutPreview';
 
 function GeneralSettings() {
     // Create initial state
@@ -200,7 +201,9 @@ function GeneralSettings() {
             </Layout>
           </div>
           <div className='col-sm'>
-            <MainPreview stateOfSetting={state}/>
+            <div className='main_preview'>
+              <LayoutPreview />
+            </div>
           </div>
         </div>
         </Page>

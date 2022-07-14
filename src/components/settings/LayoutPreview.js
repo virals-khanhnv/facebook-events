@@ -12,10 +12,10 @@ function LayoutPreview() {
                     <Card title="Layout Preview" sectioned>
                         <div className='d-flex flex-column justify-content-center align-items-center'>
                             <h1>Khanh test 1</h1>
-                            <div className="form-group col-12">
+                            <div className="form-group col-12 pl-0 pr-0">
                                 <input type="email" className="form-control" placeholder="Type to search ..."/>
                             </div>
-                            <div className='eventList col-12'>
+                            <div className='eventList pl-0 pr-0'>
                                 <div className='eventItem'>
                                     <div className='eventItem__image mr-2'>
                                         <img src={imageTest}

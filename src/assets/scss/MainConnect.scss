@@ -28,3 +28,37 @@
 	cursor: pointer;
 	outline: inherit;
 }
+
+.tr_custom {
+    font-size: 14px;
+}
+.list_of_page {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-bottom: 20px;
+}
+.card_custom_tab {
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-bottom: 20px;
+}
+
+.button_custom_facebook {
+    & button {
+        margin: 0;
+        background-color:#007bff;
+        border: none;
+        color: white;
+        padding: 10px 32px;
+        text-align: center;
+        font-size: 16px;
+        cursor: pointer;
+        transition: 300ms;
+        border-radius: 14px;
+      }
+      & button:hover {
+        background: #49a0bd;
+      }
+}
+  
+  

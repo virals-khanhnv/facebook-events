@@ -19,7 +19,7 @@ function CatchChangeToSave() {
                 </span>
                 <div>
                     <button type="button" onClick={() => handleCloseNavbarSavechange()} className="btn btn-secondary">Close</button>
-                    <button type="button" onClick={() => handleCloseNavbarSavechange()} className="btn btn-success ml-2">Save</button>
+                    <button type="button" onClick={() => handleCloseNavbarSavechange()} className="btn btn-primary ml-2">Save</button>
                 </div>
             </nav>
         </div>

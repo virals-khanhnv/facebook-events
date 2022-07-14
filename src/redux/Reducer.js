@@ -3,7 +3,7 @@ import * as types from './ActionTypes';
 const initialState = {
     statusNavbar: false,
     listFacebookpage: [],
-    facebookPageEvents: [],
+    fetchInfoFacebookLogin: [],
 };
 
 const facebookReducer = (state = initialState, action) => {
@@ -18,10 +18,10 @@ const facebookReducer = (state = initialState, action) => {
                 ...state,
                 listFacebookpage: action.payload
             }
-        case types.FETCH_LIST_FACEBOOK_PAGE_EVENTS:
+        case types.FETCH_INFO_FACEBOOKLOGIN:
             return {
                 ...state,
-                facebookPageEvents: action.payload
+                fetchInfoFacebookLogin: action.payload
             }
         case types.DELETE_FACEBOOK_PAGE:
             return {

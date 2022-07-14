@@ -1,6 +1,7 @@
 import React from 'react'
 import {Page, Layout, Card} from "@shopify/polaris";
 import MainPreview from './MainPreview';
+import CalendarPreview from './CalendarPreview';
 
 function CalendarSnippet() {
     return (
@@ -19,7 +20,7 @@ function CalendarSnippet() {
                                     </div>
                                 </div>
                                 <p className="howto">You can put code
-                                    <code>&lt;div class="ot-facebook-events-calendar"&gt;&lt;/div&gt;</code>
+                                    <code> &lt;div class="ot-facebook-events-calendar"&gt;&lt;/div&gt; </code>
                                     where you want to show calendar</p>
                                 <div className="form-group">
                                     <label className="my-1 mr-2" for="inlineFormCustomSelectPref">Calendar theme</label>
@@ -39,7 +40,7 @@ function CalendarSnippet() {
                                     <input type="text" className="form-control" placeholder="Event page URL"/>
                                 </div>
                                 <p className="howto">The page with
-                                    <code>&lt;div class="ot-facebook-events"&gt;&lt;/div&gt;</code>
+                                    <code> &lt;div class="ot-facebook-events"&gt;&lt;/div&gt; </code>
                                     can show event when you click a date in calendar.</p>
                                 <button type="button" className="btn btn-primary">Save Setting</button>
                             </Card>
@@ -47,7 +48,9 @@ function CalendarSnippet() {
                     </Layout>
                 </div>
                 <div className='col-sm'>
-                    <MainPreview/>
+                    <div className='main_preview'>
+                        <CalendarPreview />
+                    </div>
                 </div>
             </div>
 

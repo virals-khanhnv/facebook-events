@@ -15,7 +15,7 @@ export const deleteFacebookPage = (id) => ({
     payload: id
 })
 
-export const facebookPageEvents = (pageEvents) => ({
-    type: types.FETCH_LIST_FACEBOOK_PAGE_EVENTS,
-    payload: pageEvents
+export const fetchInfoFacebookLogin = (info) => ({
+    type: types.FETCH_INFO_FACEBOOKLOGIN,
+    payload: info
 })

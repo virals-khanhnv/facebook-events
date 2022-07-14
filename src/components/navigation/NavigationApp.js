@@ -1,7 +1,6 @@
 import React, {useState} from "react";
 import {
     Navbar,
-    NavbarBrand,
     Collapse,
     NavbarToggler,
     Nav,
@@ -26,16 +25,13 @@ function NavigationApp() {
     ]
     return(
         <div>
-            <Navbar color="light" expand="md" light>
-                <NavbarBrand href="/facebook-events/build/">
-                    Facebook Events
-                </NavbarBrand>
+            <Navbar color="light" className="nav_main" expand="md" light>
                 <NavbarToggler onClick={() => { setIsOpen(!isOpen) }} />
                 <Collapse navbar isOpen={isOpen}>
                     <Nav className="me-auto" navbar>
                         <NavItem>
                             <NavLink className={`${pathname === '/facebook-events/build/' ? 'activeLink' : 'inActiveLink'}`} tag={Link} to="/facebook-events/build/">
-                                Connect-Facebook
+                                Connect Facebook
                             </NavLink>
                         </NavItem>
                         <UncontrolledDropdown inNavbar nav>

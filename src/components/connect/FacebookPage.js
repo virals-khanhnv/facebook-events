@@ -10,7 +10,7 @@ import React, {useState, useCallback} from "react";
 import {DuplicateMinor} from '@shopify/polaris-icons';
 import ModalCommon from "../modal/ModalCommon";
 import '../../assets/scss/StylesTable.scss'
-import {useSelector, useDispatch} from 'react-redux';
+import {useSelector} from 'react-redux';
 import {getUnique} from "../../helper/Helper";
 
 function FacebookPage() {
@@ -41,11 +41,11 @@ function FacebookPage() {
                             <div id="page-wrap">
                                 <table>
                                     <thead>
-                                        <tr>
-                                            <th>FACEBOOK_PAGE_ID</th>
-                                            <th>PAGE_NAME</th>
-                                            <th>SHORT CODE</th>
-                                            <th>ACTION</th>
+                                        <tr className="tr_custom">
+                                            <th>Facebook page id</th>
+                                            <th>Page name</th>
+                                            <th>Short code</th>
+                                            <th>Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>{
