@@ -36,3 +36,24 @@ export function removeItem(sKey, sPath, sDomain) {
   (sDomain ? "; domain=" + sDomain : "") + 
   (sPath ? "; path=" + sPath : "");
 }
+
+
+export function removeOldView (classForchange, nameForRemove) {
+  document.querySelectorAll(`.${classForchange}`)?.forEach(function(element) {
+    element.classList?.remove(nameForRemove);
+  });
+}
+
+
+export function changeViewMode (viewmode, classForchange) {
+  if(viewmode == 0) {
+    document.querySelectorAll(`.${classForchange}`)?.forEach(function(element) {
+      element.classList?.add("viewMode__widget");
+    });
+    removeOldView(classForchange,'viewMode__list')
+  }else if(viewmode == 1) {
+    document.querySelectorAll(`.${classForchange}`)?.forEach(function(element) {
+      element.classList?.add("viewMode__list");
+    });
+  }
+}

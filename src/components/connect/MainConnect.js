@@ -4,7 +4,7 @@ import FacebookPage from './FacebookPage'
 
 function MainConnect() {
     return (
-        <div>
+        <div className='d-flex'>
             <AddFacebookPage />
             <FacebookPage />
         </div>

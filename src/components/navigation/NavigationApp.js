@@ -24,7 +24,7 @@ function NavigationApp() {
         '/facebook-events/build/advanced-settings',
     ]
     return(
-        <div>
+        <div className="override_navbar">
             <Navbar color="light" className="nav_main" expand="md" light>
                 <NavbarToggler onClick={() => { setIsOpen(!isOpen) }} />
                 <Collapse navbar isOpen={isOpen}>
@@ -64,11 +64,6 @@ function NavigationApp() {
                         <NavItem>
                             <NavLink className={`${pathname === '/facebook-events/build/events' ? 'activeLink' : 'inActiveLink'}`} tag={Link} to="/facebook-events/build/events">
                                 Events
-                            </NavLink>
-                        </NavItem>
-                        <NavItem>
-                            <NavLink className="link_bank_docs">
-                                <a target="__blank" href={docs}>Our Document</a>
                             </NavLink>
                         </NavItem>
                     </Nav>

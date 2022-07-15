@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import {Page, Layout, Card} from "@shopify/polaris";
 import { useDispatch } from 'react-redux';
 import { openNavbarSaveChange } from '../../redux/Action';
-import MainPreview from './MainPreview'
 import LayoutPreview from './LayoutPreview';
 
 function GeneralSettings() {
@@ -19,7 +18,7 @@ function GeneralSettings() {
       seeAllEvent: "",
       coverImageHeight: "",
       readmoreTextCustom: "",
-      viewMode: "",
+      viewMode: "0",
     })
 
     // Func handle
@@ -202,7 +201,7 @@ function GeneralSettings() {
           </div>
           <div className='col-sm'>
             <div className='main_preview'>
-              <LayoutPreview />
+              <LayoutPreview viewMode={state.viewMode}/>
             </div>
           </div>
         </div>
