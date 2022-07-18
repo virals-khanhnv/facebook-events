@@ -13,12 +13,21 @@ function GeneralSettings() {
     //set initial state for all fields 
     const [validationMsg, setValidationMsg] = useState({});
     const [state, setState] = useState({
-      pageName: "",
+      viewMode: "0",
+      columns: "",
+      pageName: "Khánh test 1",
+      showFilterButton: false,
+      showSearchBar: false,
       eventLimitPerPage: "",
+      orderingEvents: "",
+      showOldEvents:false,
+      showEventPlace:false,
+      showEventDescription:false,
+      showButtonBuyTicket:false,
+      showEventDate:"",
       seeAllEvent: "",
       coverImageHeight: "",
-      readmoreTextCustom: "",
-      viewMode: "0",
+      readmoreTextCustom: "Open",
     })
 
     // Func handle
@@ -36,6 +45,20 @@ function GeneralSettings() {
         ...state,
         [evt.target.name]: value
       });
+
+      if (evt.target.type === 'checkbox') {
+        if(evt.target.checked){
+          setState({
+            ...state,
+            [evt.target.name]: true
+          });
+       } else {
+          setState({
+            ...state,
+            [evt.target.name]: false
+          })}
+      }
+      
       if (value) 
         dispatch(openNavbarSaveChange(true))
     }
@@ -97,32 +120,48 @@ function GeneralSettings() {
                         <option value="0">Widget View</option>
                         <option value="1">List View</option>
                         <option value="2">Grid View</option>
-                        <option value="3">Iframe View</option>
-                        <option value="4">Mansory View</option>
-                        <option value="5">Slider View</option>
-                        <option value="6">Upcomming Events View</option>
-                        <option value="7">Facebook Events View</option>
+                        {/* <option value="3">Mansory View</option> */}
+                        {/* <option value="4">Slider View</option> */}
+                        {/* <option value="5">Upcomming Events View</option> */}
+                        {/* <option value="6">Facebook Events View</option> */}
                       </select>
                     </div>
+                    {
+                      state.viewMode == 2 ?
+                          <div className="form-group">
+                            <label className="my-1 mr-2" >Columns</label>
+                            <select name="columns" onChange={handleChangeOpenSave} className="custom-select my-1 mr-sm-2" >
+                              <option value="1">1 Column</option>
+                              <option value="2">2 Columns</option>
+                              {/* <option value="3">3 Columns</option>
+                              <option value="4">4 Columns</option> */}
+                            </select>
+                          </div>
+                        : ''
+                    }
                     <div className="form-group">
                       <label htmlFor="pageName">Page Name</label>
                       <input onChange={handleChangeOpenSave} type="text" className="form-control" name='pageName' id="pageName" defaultValue={state.pageName} placeholder="Facebook Events 1" />
                       <p className="text-danger">{validationMsg.pageName}</p> 
                     </div>
-                    <div className="form-group">
-                      <div className="form-check">
-                        <input onChange={handleChangeOpenSave} className="form-check-input" type="checkbox" id="invalidCheck1" required />
-                        <label className="form-check-label" htmlFor="invalidCheck1">
-                          Show Filter button
-                        </label>
-                      </div>
-                      <div className="form-check">
-                        <input onChange={handleChangeOpenSave} className="form-check-input" type="checkbox" id="invalidCheck2" required />
-                        <label className="form-check-label" htmlFor="invalidCheck2">
-                        Show Search Bar
-                        </label>
-                      </div>
-                    </div>
+                    {
+                      state.viewMode == 5 ? ''
+                      :
+                        <div className="form-group">
+                          <div className="form-check">
+                            <input onChange={handleChangeOpenSave} name="showFilterButton" className="form-check-input" type="checkbox" id="invalidCheck1" required />
+                            <label className="form-check-label" htmlFor="invalidCheck1">
+                              Show Filter button
+                            </label>
+                          </div>
+                          <div className="form-check">
+                            <input onChange={handleChangeOpenSave} name="showSearchBar" className="form-check-input" type="checkbox" id="invalidCheck2" required />
+                            <label className="form-check-label" htmlFor="invalidCheck2">
+                            Show Search Bar
+                            </label>
+                          </div>
+                        </div>
+                    }
                     <div className="form-group">
                       <label htmlFor="event-limit">Event limit per page</label>
                       <input onChange={handleChangeOpenSave} type="number" name='eventLimitPerPage' className="form-control" id="event-limit" />
@@ -130,53 +169,60 @@ function GeneralSettings() {
                     </div>
                     <div className="form-group">
                       <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">Ordering Events <span className='important_input'>*</span></label>
-                      <select onChange={handleChangeOpenSave} className="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
-                        <option>Show from older to newer</option>
-                        <option >Show from older to older</option>
+                      <select onChange={handleChangeOpenSave} name="orderingEvents" className="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                        <option value="1">Show from older to newer</option>
+                        <option value="2">Show from older to older</option>
                       </select>
                     </div>
                     <div className="form-group">
                       <div className="form-check">
-                        <input onChange={handleChangeOpenSave} className="form-check-input" type="checkbox" id="invalidCheck3" required />
+                        <input onChange={handleChangeOpenSave} name="showOldEvents" className="form-check-input" type="checkbox" id="invalidCheck3" required />
                         <label className="form-check-label" htmlFor="invalidCheck3">
                         Show Old Events
                         </label>
                       </div>
                       <div className="form-check">
-                        <input onChange={handleChangeOpenSave} className="form-check-input" type="checkbox" id="invalidCheck4" required />
+                        <input onChange={handleChangeOpenSave} name="showEventPlace" className="form-check-input" type="checkbox" id="invalidCheck4" required />
                         <label className="form-check-label" htmlFor="invalidCheck4">
                         Show Event place
                         </label>
                       </div>
                       <div className="form-check">
-                        <input onChange={handleChangeOpenSave} className="form-check-input" type="checkbox" id="invalidCheck5" required />
+                        <input onChange={handleChangeOpenSave} name="showEventDescription" className="form-check-input" type="checkbox" id="invalidCheck5" required />
                         <label className="form-check-label" htmlFor="invalidCheck5">
                         Show Event description
                         </label>
                       </div>
                       <div className="form-check">
-                        <input onChange={handleChangeOpenSave} className="form-check-input" type="checkbox" id="invalidCheck6" required />
+                        <input onChange={handleChangeOpenSave} name="showButtonBuyTicket" className="form-check-input" type="checkbox" id="invalidCheck6" required />
                         <label className="form-check-label" htmlFor="invalidCheck6">
                         Show "Buy ticket" button
                         </label>
                       </div>
                     </div>
+                    {
+                      state.showButtonBuyTicket ?
+                      <div className="form-group">
+                        <label htmlFor="seeAllEvents">Buy ticket text custom</label>
+                        <input onChange={handleChangeOpenSave} type="text" name='buyTicketTextCustom' className="form-control" />
+                      </div> : ''
+                    }
                     <div className="form-group">
                       <label className="my-1 mr-2" htmlFor="inlineFormCustomSelectPref">Show Event date</label>
-                      <select onChange={handleChangeOpenSave} className="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
+                      <select onChange={handleChangeOpenSave} name="showEventDate" className="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
                         <option >Both start and end date</option>
                         <option value="1">Only start date</option>
-                        <option value="1">Hide event date</option>
+                        <option value="2">Hide event date</option>
                       </select>
                     </div>
                     <div className="form-group">
                       <label htmlFor="seeAllEvents">See All Events</label>
-                      <input onChange={handleChangeOpenSave} type="text" name='seeAllEvent' className="form-control" id="seeAllEvents" />
+                      <input  onChange={handleChangeOpenSave} type="text" name='seeAllEvent' className="form-control" id="seeAllEvents" />
                       <p className="text-danger">{validationMsg.seeAllEvent}</p> 
                     </div>
                     <div className="form-group">
                       <label htmlFor="event-limit">Cover image height (px)</label>
-                      <input onChange={handleChangeOpenSave} type="number" name="coverImageHeight" className="form-control" id="event-limit" />
+                      <input  onChange={handleChangeOpenSave} type="number" name="coverImageHeight" className="form-control" id="event-limit" />
                       <p className="text-danger">{validationMsg.coverImageHeight}</p> 
                     </div>
                     <div className="form-group">
@@ -201,7 +247,11 @@ function GeneralSettings() {
           </div>
           <div className='col-sm'>
             <div className='main_preview'>
-              <LayoutPreview viewMode={state.viewMode}/>
+              <LayoutPreview 
+                state={state}
+                valueColorText={valueColorText}
+                valueColorBackground={valueColorBackground}
+              />
             </div>
           </div>
         </div>

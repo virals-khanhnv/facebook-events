@@ -6,7 +6,7 @@ import {Icon} from "@shopify/polaris";
 import { useDispatch } from 'react-redux';
 import { deleteFacebookPage } from '../../redux/Action';
 
-function ModalCommon({nameOfEvent, location, eventDate, phaseAction, id}) {
+function ModalCommon({nameOfEvent, location, eventDate, phaseAction, id, nameOfButton, valueColorText, valueColorBackground}) {
     const [active, setActive] = useState(false);
    const dispatch = useDispatch();
 
@@ -17,7 +17,8 @@ function ModalCommon({nameOfEvent, location, eventDate, phaseAction, id}) {
         dispatch(deleteFacebookPage(id))
     }
 
-    const activator = phaseAction === 'preview' ? <Button onClick={handleChange}>Open</Button> : <div role={'button'}
+    const activator = phaseAction === 'preview' ? <Button
+    onClick={handleChange}>{nameOfButton}</Button> : <div role={'button'}
         onClick={handleChange}><Icon source={DeleteMinor}
             color="base"/></div>
 

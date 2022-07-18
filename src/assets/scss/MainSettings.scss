@@ -24,6 +24,10 @@
         }
     }
 }
+.eventList {
+    display: flex;
+    flex-direction: row;
+}
 .main_generalSetting {
     display: flex;
     @media only screen and (max-width: 900px) {
@@ -43,13 +47,53 @@
 }
 
 .viewMode__widget {
+    display: flex;
     flex-direction: column;
+    & .eventItem {
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
 }
 .viewMode__list {
-    flex-direction: row;
+    display: flex;
+    flex-direction: column;
+    & .eventItem {
+        flex-direction: row;
+    }
 }
 .viewMode__grid {
-
+    display: grid;
+    grid-template-columns: repeat(1,1fr);
+    grid-gap: 15px 30px;
+    & .eventItem {
+        display: flex;
+        flex-direction: column;
+        flex: 0 1 calc(20% - 24px);
+        border: 1px solid #e6e6e6;
+        padding: 20px;
+        & .eventItem__image  {
+            margin-right: 0px !important;
+            width: 100%;
+            & img {
+                width: inherit;
+            }
+        }
+    }
+    .Polaris-Button {
+        width: -webkit-fill-available;
+    }
+    & .eventItem:nth-child(5n) {
+        margin: 15px 0 15px 15px;
+    }
+}
+.viewMode__grid_column_2 {
+    grid-template-columns: repeat(2,1fr) !important;
+}
+.viewMode__grid_column_3 {
+    grid-template-columns: repeat(3,1fr) !important;
+}
+.viewMode__grid_column_4 {
+    grid-template-columns: repeat(4,1fr) !important;
 }
 .viewMode__slider {
 
@@ -59,4 +103,32 @@
 }
 .viewMode_FacebookEventsView {
     
+}
+
+
+/* ##### Buttons ##### */
+.btn-group .button {
+    background-color: #FFF;
+    color: #888;
+    padding: 4px 10px;
+    text-align: center;
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    border: 1px solid #888;
+    border-radius: 5px;
+    margin: 10px 2px;
+}
+.btn-group {
+    display: inline-block;
+}
+.btn-group .button:hover {
+    background-color: #888;
+    color: white;
+}
+.btn-group .button:active, .btn-group .button:focus {
+    background-color: #888;
+    color: white;
 }

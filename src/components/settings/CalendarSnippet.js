@@ -26,7 +26,6 @@ function CalendarSnippet() {
                                     <label className="my-1 mr-2" for="inlineFormCustomSelectPref">Calendar theme</label>
                                     <select className="custom-select my-1 mr-sm-2" id="inlineFormCustomSelectPref">
                                         <option selected>Airbnb</option>
-                                        <option value="1">Dark</option>
                                     </select>
                                 </div>
                                 <div className="form-group">

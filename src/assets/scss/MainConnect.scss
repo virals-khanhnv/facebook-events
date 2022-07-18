@@ -86,9 +86,10 @@
         content: "f";
     }
 }
-
-.css-1u4zpwo-MuiSvgIcon-root-MuiStepIcon-root.Mui-active {
-    color: rgba(0, 0, 0, 0.38) !important;
+.stepper_custom {
+    & .Mui-active {
+        color: rgba(0, 0, 0, 0.38) !important;
+    }
 }
   
 .custom_button_chooseAll {
@@ -96,4 +97,10 @@
     left: 50%;
     z-index: 1;
     top: 50%;
+}
+
+@media screen and (max-width: 767px) {
+    .custom_page {
+        flex-direction: column;
+    }
 }

@@ -52,9 +52,14 @@ function AddFacebookPage() {
 
     const buttonChooseAll = () => {
         return (
-            <div className="custom_button_chooseAll" >
-                <Button onClick={handleChooseMulti} primary>Multichoose</Button>
-            </div>
+            <Card sectioned>
+                <div className="d-flex justify-content-between">
+                    <div className="d-flex align-items-center">
+                        
+                    </div>
+                    <Button onClick={handleChooseMulti} primary>Multichoose</Button>
+                </div>
+            </Card>
         )
     }
  
@@ -132,10 +137,10 @@ function AddFacebookPage() {
                         <Layout>
                             <Layout.Section oneHalf>
                                 <Card title="Add Facebook page">
-                                {checked.length === 0 || stepper === 1 || stepper === 3 ? '' : buttonChooseAll()}
+                                
                                     <Card.Section >
                                     <Box sx={{ width: '100%' }}>
-                                    <Stepper activeStep={stepper} alternativeLabel>
+                                    <Stepper className="stepper_custom" activeStep={stepper} alternativeLabel>
                                         {steps.map((label) => (
                                             <Step key={label}>
                                                 <StepLabel>{label}</StepLabel>
@@ -154,6 +159,7 @@ function AddFacebookPage() {
                                     else if (stepper === 2) {
                                         return (
                                             <div>
+                                            {checked.length === 0 || stepper === 1 || stepper === 3 ? '' : buttonChooseAll()}
                                             {
                                                 listOfPage ? listOfPage.map(item => (
                                                     <Card key={item.id} sectioned>
@@ -185,12 +191,10 @@ function AddFacebookPage() {
                                     } else {
                                             return (
                                                 <div>
-                                                    <Card sectioned>
                                                         <div className="d-flex flex-column justify-content-center align-items-center">
                                                             <button onClick={() => {setStepper(2); setListPageMulti([])}} type="button" className="btn btn-primary mb-2 col-4">Add More Page</button>
                                                             <button onClick={() => {setStepper(1); handleClear()}} type="button" className="btn btn-success col-4">Done</button>
                                                         </div>
-                                                    </Card>
                                                 </div>
                                             )
                                             }
@@ -199,7 +203,6 @@ function AddFacebookPage() {
                                     <div className="card_custom_tab">
                                         {
                                             logged === false ? <div className="d-flex align-items-center justify-content-center button_custom_facebook"><button className="fb connect" onClick={onLoginClick} > Login With Facebook</button></div> : ''
-
                                         }
                                     </div>
                             </Card>

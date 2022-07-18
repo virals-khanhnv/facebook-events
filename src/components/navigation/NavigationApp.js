@@ -11,10 +11,15 @@ import {
     DropdownItem,
     DropdownMenu,
 } from "reactstrap";
+import { Icon } from "@shopify/polaris";
 import {Link, useLocation} from 'react-router-dom';
+import {
+    ConnectMinor,
+    SettingsMinor,
+    CalendarMinor
+  } from '@shopify/polaris-icons';
 
 function NavigationApp() {
-    const docs = 'https://help.omegatheme.com/en/category/facebook-events-by-omega-yqc7xu/'
     const [isOpen, setIsOpen] = useState(false);
     const pathname = useLocation().pathname;
     const list_pathName = [
@@ -24,18 +29,26 @@ function NavigationApp() {
         '/facebook-events/build/advanced-settings',
     ]
     return(
-        <div className="override_navbar">
-            <Navbar color="light" className="nav_main" expand="md" light>
+        <div>
+            <Navbar color="warning" light expand="md" >
                 <NavbarToggler onClick={() => { setIsOpen(!isOpen) }} />
                 <Collapse navbar isOpen={isOpen}>
                     <Nav className="me-auto" navbar>
-                        <NavItem>
-                            <NavLink className={`${pathname === '/facebook-events/build/' ? 'activeLink' : 'inActiveLink'}`} tag={Link} to="/facebook-events/build/">
+                        <NavItem className="">
+                            <NavLink className={`${pathname === '/facebook-events/build/' ? 'activeLink' : 'inActiveLink'} d-flex float-left`} tag={Link} to="/facebook-events/build/">
+                            <Icon
+                            source={ConnectMinor}
+                            color="base"
+                            />
                                 Connect Facebook
                             </NavLink>
                         </NavItem>
                         <UncontrolledDropdown inNavbar nav>
-                            <DropdownToggle className={`${ list_pathName.includes(pathname) ? 'activeLink' : 'inActiveLink' }`} caret nav>
+                            <DropdownToggle className={`${ list_pathName.includes(pathname) ? 'activeLink' : 'inActiveLink' }   d-flex justify-content-center align-items-center float-left` } caret nav>
+                            <Icon
+                                source={SettingsMinor}
+                                color="base"
+                                />
                                 Settings
                             </DropdownToggle>
                             <DropdownMenu end>
@@ -62,7 +75,11 @@ function NavigationApp() {
                             </DropdownMenu>
                         </UncontrolledDropdown>
                         <NavItem>
-                            <NavLink className={`${pathname === '/facebook-events/build/events' ? 'activeLink' : 'inActiveLink'}`} tag={Link} to="/facebook-events/build/events">
+                            <NavLink className={`${pathname === '/facebook-events/build/events' ? 'activeLink' : 'inActiveLink'} d-flex float-left`} tag={Link} to="/facebook-events/build/events">
+                            <Icon
+                                source={CalendarMinor}
+                                color="base"
+                                />
                                 Events
                             </NavLink>
                         </NavItem>
